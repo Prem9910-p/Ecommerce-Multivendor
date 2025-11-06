@@ -1,17 +1,20 @@
 package com.prem.Ecommerce.Multivendor.Modal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.prem.Ecommerce.Multivendor.Domain.User_Role;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class User {
 
     @Id
@@ -24,7 +27,12 @@ public class User {
     private String email;
     private String fullName;
     private String mobile;
-    private User_Role role=User_Role.ROLE_CUSTOMER;
-    private Set<Address> addresses=new HashSet<>();
-    private Set<Coupom> usedCoupons=new HashSet<>();
+    private User_Role role = User_Role.ROLE_CUSTOMER;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Address> addresses = new HashSet<>();
+
+    @ManyToMany
+    @JsonIgnore
+    private Set<Coupon> usedCoupons = new HashSet<>();
 }

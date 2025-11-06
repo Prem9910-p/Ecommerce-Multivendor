@@ -1,8 +1,12 @@
 package com.prem.Ecommerce.Multivendor.Modal;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,22 +14,28 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class Address {
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String name;
-    private String locality;
-    private String address;
-    private String city;
-    private String state;
-    private String pinCode;
-    private String mobile;
+    @Column(nullable = false)
+    private String reviewText;
+
+    private double rating;
+
+    @ElementCollection
+    private List<String> productImages;
+
+    @JsonIgnore
+    @ManyToOne
+    private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")   // Foreign Key in address table
-    @JsonIgnore                     // Avoid infinite recursion
     private User user;
+
+    private LocalDateTime createdAt=LocalDateTime.now();
+
+
 }
