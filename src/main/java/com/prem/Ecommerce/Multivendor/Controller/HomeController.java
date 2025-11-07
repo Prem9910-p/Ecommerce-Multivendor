@@ -1,6 +1,6 @@
 package com.prem.Ecommerce.Multivendor.Controller;
 
-import com.prem.Ecommerce.Multivendor.Controller.Response.ApiResponse;
+import com.prem.Ecommerce.Multivendor.Response.ApiResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

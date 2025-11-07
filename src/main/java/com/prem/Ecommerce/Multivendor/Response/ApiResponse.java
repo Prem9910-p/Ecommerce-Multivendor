@@ -1,4 +1,4 @@
-package com.prem.Ecommerce.Multivendor.Controller.Response;
+package com.prem.Ecommerce.Multivendor.Response;
 
 import lombok.Data;
 
