@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+
 @Getter
 @Setter
 @Entity
@@ -28,4 +30,6 @@ public class Address {
     @JoinColumn(name = "user_id")   // Foreign Key in address table
     @JsonIgnore                     // Avoid infinite recursion
     private User user;
+
+
 }
